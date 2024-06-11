@@ -1,0 +1,13 @@
+.home {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 96px;
+  color: var(--color-text-white);
+}
+
+.page-title {
+  padding-bottom: 32px;
+  font-size: 32px;
+  line-height: 38px;
+}
