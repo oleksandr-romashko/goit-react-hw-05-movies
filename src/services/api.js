@@ -50,7 +50,10 @@ const getMovieDetailsById = async movieId => {
 /**
  * Get cast information for a movie.
  */
-const getMovieCastById = async keyword => {};
+const getMovieCastById = async movieId => {
+  const response = await axios.get(`movie/${movieId}/credits`);
+  return response.data.cast;
+};
 
 /**
  * Get the user reviews for a movie.
