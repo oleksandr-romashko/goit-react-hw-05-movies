@@ -44,7 +44,7 @@ const MovieDetailsPage = () => {
           <Container>
             <div>
               <div className={css.details}>
-                <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w1280${poster_path}`} alt="preview" />
+                <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w1280${poster_path}`} alt="" aria-label={`${title} preview`} />
                 <div className={css.description}>
                   <div>
                     <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
