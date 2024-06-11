@@ -1,5 +1,5 @@
 import { useParams, Outlet } from "react-router-dom";
-import { AdditionalInfo, Container } from "components";
+import { AdditionalInfo, Container, Loader } from "components";
 import css from "./MovieDetailsPage.module.css";
 import { useEffect, useState } from "react";
 import api from "services/api";
@@ -39,37 +39,39 @@ const MovieDetailsPage = () => {
           <a className={css["back-navigation-link"]} href="./">Go back</a>
         </Container>
       </section>
-      <section className={css["movie"]}>
-        <Container>
-          <div>
-            <div className={css.details}>
-              <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w1280${poster_path}`} alt="preview" />
-              <div className={css.description}>
-                <div>
-                  <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
-                  <p>User Score: {Math.trunc(vote_average * 10)}%</p>
-                </div>
-                <div>
-                  <h2 className={css["movie-subtitle"]}>Overview</h2>
-                  <p>{overview}</p>
-                </div>
-                <div>
-                  <h2 className={css["movie-subtitle"]}>Genres</h2>
-                  <ul className={css["genres-list"]}>
-                    {genres && genres.map(({name})=> (
-                      <li key={name}>
-                        <span>{name}</span>
-                      </li>
-                    ))}
-                  </ul>
+      {isLoading ? <Loader /> : 
+        <section className={css["movie"]}>
+          <Container>
+            <div>
+              <div className={css.details}>
+                <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w1280${poster_path}`} alt="preview" />
+                <div className={css.description}>
+                  <div>
+                    <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
+                    <p>User Score: {Math.trunc(vote_average * 10)}%</p>
+                  </div>
+                  <div>
+                    <h2 className={css["movie-subtitle"]}>Overview</h2>
+                    <p>{overview}</p>
+                  </div>
+                  <div>
+                    <h2 className={css["movie-subtitle"]}>Genres</h2>
+                    <ul className={css["genres-list"]}>
+                      {genres && genres.map(({name})=> (
+                        <li key={name}>
+                          <span>{name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
+              <AdditionalInfo />
+              <Outlet />
             </div>
-            <AdditionalInfo />
-            <Outlet />
-          </div>
-        </Container>
-      </section>
+          </Container>
+        </section>
+      }
     </>
   )
 };
