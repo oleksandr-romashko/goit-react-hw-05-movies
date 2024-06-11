@@ -33,7 +33,6 @@ const Reviews = () => {
 
   return (
     <>
-      {console.log('userReviews :>> ', userReviews)}
       {userReviews.length === 0 ? !isLoading && <p className={css["no-info-message"]}>We don't have any reviews for this movie.</p> :
         <ul className={css.list}>
           {userReviews.map(({id, author, content, created_at}) => (
