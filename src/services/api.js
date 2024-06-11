@@ -59,7 +59,12 @@ const getMovieCastById = async movieId => {
  * Get the user reviews for a movie.
  */
 const getMovieReviewsById = async movieId => {
-  const response = await axios.get(`movie/${movieId}/reviews`);
+  const response = await axios.get(`movie/${movieId}/reviews`,{
+      params: {
+        page: '1',
+      },
+    }
+  );
   return response.data.results
 };
 
