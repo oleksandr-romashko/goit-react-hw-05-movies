@@ -1,4 +1,4 @@
-import { useParams, Outlet } from "react-router-dom";
+import { useParams, Outlet, Link } from "react-router-dom";
 import { AdditionalInfo, Container, Loader } from "components";
 import css from "./MovieDetailsPage.module.css";
 import { useEffect, useState } from "react";
@@ -36,7 +36,7 @@ const MovieDetailsPage = () => {
       {console.log('movieDetails :>> ', movieDetails)}
       <section className={css["back-navigation"]}>
         <Container>
-          <a className={css["back-navigation-link"]} href="./">Go back</a>
+          <Link className={css["back-navigation-link"]} to="/movies">Go back</Link>
         </Container>
       </section>
       {isLoading ? <Loader /> : 
