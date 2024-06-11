@@ -1,3 +1,7 @@
+.no-info-message {
+  color: var(--color-text-white);
+}
+
 .cast-list {
   display: grid;
   max-width: 100%;

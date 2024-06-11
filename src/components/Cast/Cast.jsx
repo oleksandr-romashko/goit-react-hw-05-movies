@@ -33,7 +33,9 @@ const Cast = () => {
 
   return (
     <>
-      {actorCast.length >0 &&
+      {actorCast.length === 0 
+        ? !isLoading && <p className={css["no-info-message"]}>We don't have any information about actors cast for this movie.</p> 
+        :
         <ul className={css["cast-list"]}>
           {actorCast.map(({id, profile_path, name, character}) => (
             <li key={id} className={css["cast-item"]}>

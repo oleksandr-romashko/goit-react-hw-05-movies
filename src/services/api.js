@@ -58,7 +58,10 @@ const getMovieCastById = async movieId => {
 /**
  * Get the user reviews for a movie.
  */
-const getMovieReviewsById = async keyword => {};
+const getMovieReviewsById = async movieId => {
+  const response = await axios.get(`movie/${movieId}/reviews`);
+  return response.data.results
+};
 
 const api = {
   getTrendingMovies, 
