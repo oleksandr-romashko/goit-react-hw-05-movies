@@ -1,0 +1,21 @@
+.loader {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 130px;
+  height: 94px;
+}
+
+.loader-icon {
+  stroke: var(--color-text-white);
+}
+
+#inner {
+  animation: spin 3s infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(90deg)
+  }
+}

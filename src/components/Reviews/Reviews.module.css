@@ -1,0 +1,16 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+}
+
+.item {
+  padding: 16px 16px;
+  background-color: var(--color-text-white);
+  border: 1px solid var(--color-text-white);
+  border-radius: 8px;
+}
+
+.author {
+  font-weight: 700;
+}

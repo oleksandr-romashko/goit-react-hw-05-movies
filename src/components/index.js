@@ -1,0 +1,10 @@
+export {default as App} from "./App/App";
+export {default as Header} from "./Header/Header";
+export {default as Footer} from "./Footer/Footer";
+export {default as Container} from "./Container/Container";
+export {default as MoviesList} from "./MoviesList/MoviesList";
+export {default as SearchForm} from "./SearchForm/SearchForm";
+export {default as AdditionalInfo} from "./AdditionalInfo/AdditionalInfo";
+export {default as Loader} from "./Loader/Loader";
+export {default as Cast} from "./Cast/Cast";
+export {default as Reviews} from "./Reviews/Reviews";

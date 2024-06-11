@@ -1,0 +1,85 @@
+.additional-info {
+  margin-top: 48px;
+  margin-bottom: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--color-text-white);
+  color: var(--color-text-white);
+}
+
+.options {
+  min-height: 64px;
+  margin-top: 16px;
+  display: flex;
+}
+
+.options::before {
+  content: "";
+  display: inline-flex;
+  width: 8px;
+  border-bottom: 1px solid var(--color-text-white);
+}
+
+.additional-info:last-child .options::before {
+  border-bottom-width: 0;
+}
+
+.options::after {
+  content: "";
+  display: inline-flex;
+  flex-grow: 1;
+  border-bottom: 1px solid var(--color-text-white);
+}
+
+.additional-info:last-child .options::after {
+  border-bottom-width: 0;
+}
+
+.option {
+  margin-top: 16px;
+  display: inline-flex;
+  padding: 8px 24px;
+  border-radius: 10px 10px 0 0;
+  
+  border-color: var(--color-text-white);
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+
+  color: var(--color-text-white);
+  text-decoration: none;
+
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out, margin-top 250ms ease-in-out, margin-left 200ms ease-in-out;
+}
+
+.additional-info:last-child .option {
+  border-radius: 10px 10px 10px 10px;
+  background-color: unset;
+  color: var(--color-text-white);
+  margin-left: 12px;
+}
+
+.additional-info:last-child .option:not(:first-child) {
+}
+
+.additional-info:last-child .option:hover {
+  background-color: var(--color-text-white);
+  color: var(--color-black);
+}
+
+.option:global(.active) {
+  border-bottom-width: 0;
+}
+
+.option:not(:global(.active)) {
+  background-color: var(--color-text-white);
+  color: var(--color-black);
+  margin-top: 22px;
+}
+
+.option:not(:global(.active)):hover {
+  background-color: unset;
+  color: var(--color-text-white);
+}
+
+.option:last-child {
+  border-right-width: 1px;
+}

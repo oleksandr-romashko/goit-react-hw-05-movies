@@ -1,0 +1,34 @@
+.movies-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+}
+
+.movies-list > li {
+  position: relative;
+  padding-left: 32px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.movies-list > li::before {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  display: inline-block;
+  content: url("images/spool.svg");
+  width: 20px;
+  height: 20px;
+}
+
+.movie-item-link {
+  color: var(--color-text-white);
+  text-decoration: none;
+  outline-offset: 4px;
+
+}
+
+.movies-list > li:hover .movie-item-link,
+.movie-item-link:focus {
+  text-decoration: underline;
+}
