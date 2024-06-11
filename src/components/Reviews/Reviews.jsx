@@ -35,7 +35,7 @@ const Reviews = () => {
     <>
       {userReviews.length === 0 ? !isLoading && <p className={css["no-info-message"]}>We don't have any reviews for this movie.</p> :
         <ul className={css.list}>
-          {userReviews.map(({id, author, content, created_at}) => (
+          {userReviews.results.map(({id, author, content, created_at}) => (
             <li key={id} className={css.item}>
               <div className={css.details}><span className={css.author}>Author: {author}</span> on {new Date(created_at).toLocaleDateString()} at {new Date(created_at).toLocaleTimeString()}</div>
               <p>{content}</p>

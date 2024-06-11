@@ -65,7 +65,7 @@ const getMovieReviewsById = async movieId => {
       },
     }
   );
-  return response.data.results
+  return response.data
 };
 
 const api = {
