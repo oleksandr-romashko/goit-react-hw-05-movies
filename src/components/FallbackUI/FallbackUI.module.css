@@ -1,0 +1,41 @@
+.error-title {
+  padding-top: 24px;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--color-text-white);
+}
+
+.error-sutitle {
+  margin-top: 32px;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--color-text-white);
+}
+
+.error-title ~ p {
+  margin-top: 28px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-white);
+}
+
+.solutions {
+  margin-top: 16px;
+  padding-left: 32px;
+  list-style-type: disc;
+}
+
+.solutions > li {
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--color-text-white);
+}
+
+.solutions > li:not(:first-child) {
+  margin-top: 16px;
+}
+
+.contact-link,
+.contact-link:visited {
+  color: var(--color-text-white);
+}

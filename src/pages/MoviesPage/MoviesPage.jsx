@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Loader, MoviesList, SearchForm } from "components";
+import { Container, FallbackUI, Loader, MoviesList, SearchForm } from "components";
 import css from "./MoviesPage.module.css";
 import api from "services/api";
 
@@ -7,6 +7,7 @@ const MoviesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [foundMovies, setFoundMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSearchQueryChange = (query) => {
     setSearchQuery(query)
@@ -17,11 +18,13 @@ const MoviesPage = () => {
     const query = event.target.searchQuery.value;
     if(query) {
       setIsLoading(true);
+      setError(null);
       api.getMoviesByTitle(query)
         .then(foundMovies => {
           setFoundMovies(foundMovies);
         })
         .catch(error => {
+          setError(error);
           console.log(error);
         })
         .finally(() => {
@@ -36,6 +39,7 @@ const MoviesPage = () => {
     <section className={css["movies"]}>
       <Container>
           <SearchForm searchQuery={searchQuery} onQueryChange={handleSearchQueryChange} onSearch={handleMovieSearch} />
+          {error && <FallbackUI />}
           {isLoading ? <Loader /> : <MoviesList movies={foundMovies} />}
       </Container>
     </section>

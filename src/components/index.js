@@ -8,3 +8,4 @@ export {default as AdditionalInfo} from "./AdditionalInfo/AdditionalInfo";
 export {default as Loader} from "./Loader/Loader";
 export {default as Cast} from "./Cast/Cast";
 export {default as Reviews} from "./Reviews/Reviews";
+export {default as FallbackUI} from "./FallbackUI/FallbackUI";

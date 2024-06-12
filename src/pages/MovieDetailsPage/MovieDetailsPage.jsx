@@ -1,5 +1,5 @@
 import { useParams, Outlet, Link } from "react-router-dom";
-import { AdditionalInfo, Container, Loader } from "components";
+import { AdditionalInfo, Container, FallbackUI, Loader } from "components";
 import css from "./MovieDetailsPage.module.css";
 import { useEffect, useState } from "react";
 import api from "services/api";
@@ -9,15 +9,18 @@ const MovieDetailsPage = () => {
 
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   
   useEffect(() => {
     const getMovieDetails = () => {
       setIsLoading(true);
+      setError(null);
       api.getMovieDetailsById(movieId)
         .then(trendingMovies => {
           setMovieDetails(trendingMovies);
         })
         .catch(error => {
+          setError(error);
           console.log(error);
         })
         .finally(() => {
@@ -42,33 +45,35 @@ const MovieDetailsPage = () => {
       {isLoading ? <Loader /> : 
         <section className={css["movie"]}>
           <Container>
-            <div>
-              <div className={css.details}>
-                <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w1280${poster_path}`} alt="" aria-label={`${title} preview`} />
-                <div className={css.description}>
-                  <div>
-                    <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
-                    <p>User Score: {Math.trunc(vote_average * 10)}%</p>
-                  </div>
-                  <div>
-                    <h2 className={css["movie-subtitle"]}>Overview</h2>
-                    <p>{overview}</p>
-                  </div>
-                  <div>
-                    <h2 className={css["movie-subtitle"]}>Genres</h2>
-                    <ul className={css["genres-list"]}>
-                      {genres && genres.map(({name})=> (
-                        <li key={name}>
-                          <span>{name}</span>
-                        </li>
-                      ))}
-                    </ul>
+            {error ? <FallbackUI /> :
+              <div>
+                <div className={css.details}>
+                  <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w1280${poster_path}`} alt="" aria-label={`${title} preview`} />
+                  <div className={css.description}>
+                    <div>
+                      <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
+                      <p>User Score: {Math.trunc(vote_average * 10)}%</p>
+                    </div>
+                    <div>
+                      <h2 className={css["movie-subtitle"]}>Overview</h2>
+                      <p>{overview}</p>
+                    </div>
+                    <div>
+                      <h2 className={css["movie-subtitle"]}>Genres</h2>
+                      <ul className={css["genres-list"]}>
+                        {genres && genres.map(({name})=> (
+                          <li key={name}>
+                            <span>{name}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
+                <AdditionalInfo />
+                <Outlet />
               </div>
-              <AdditionalInfo />
-              <Outlet />
-            </div>
+            }
           </Container>
         </section>
       }
