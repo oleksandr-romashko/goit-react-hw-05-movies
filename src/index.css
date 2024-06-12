@@ -2,10 +2,15 @@
 
 :root {
   --color-black: #333333;
+  --color-black: #646464;
   --color-pure-white: #FFF;
   --color-white: #FEFFFF;
   --color-text-white: rgba(222, 222, 222, 1);
+  --color-text-white-semi-transparent: rgba(222, 222, 222, 0.9);
   --color-text-white-transparent: rgba(222, 222, 222, 0);
+  --color-accent-blue: #4D578D;
+  --color-accent-blue-darker: #3b4479;
+  --color-accent-blue-dark: #2a325f;
 }
 
 html {
