@@ -41,9 +41,6 @@ const getMovieDetailsById = async movieId => {
     `movie/${movieId}?api_key=${API_KEY}&language=en-US`
   );
   console.log('response :>> ', response);
-  if (response.data.adult) {
-    throw new Error("Unsupported content. Reason: adult content.")
-  }
   return response.data;
 };
 

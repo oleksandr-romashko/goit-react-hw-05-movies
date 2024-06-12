@@ -16,12 +16,15 @@ const MovieDetailsPage = () => {
       setIsLoading(true);
       setError(null);
       api.getMovieDetailsById(movieId)
-        .then(trendingMovies => {
-          setMovieDetails(trendingMovies);
+        .then(movie => {
+          if (movie.adult) {
+            throw new Error("Unsupported type of content.")
+          }
+          setMovieDetails(movie);
         })
         .catch(error => {
           setError(error);
-          console.log(error);
+          console.error(error);
         })
         .finally(() => {
           setIsLoading(false)
