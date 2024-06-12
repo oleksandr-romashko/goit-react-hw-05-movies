@@ -51,11 +51,18 @@
   color: var(--color-pure-white);
   border: none;
   border-radius: 0 3px 3px 0;
-  background-color: #4D578D;
+  background-color: var(--color-accent-blue);
+  transition: background-color 180ms ease-in-out;
 }
 
 .search-btn:hover,
 .search-btn:focus {
+  background-color: var(--color-accent-blue-darker);
+
+}
+
+.search-btn:active {
+  background-color: var(--color-accent-blue-dark);
 
 }
 
