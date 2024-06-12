@@ -1,7 +1,7 @@
 .movies-list {
   display: flex;
   flex-direction: column;
-  row-gap: 6px;
+  row-gap: 8px;
 }
 
 .movies-list > li {
@@ -19,16 +19,22 @@
   content: url("images/spool.svg");
   width: 20px;
   height: 20px;
+  transition: transform .15s;
 }
 
 .movie-item-link {
   color: var(--color-text-white);
   text-decoration: none;
   outline-offset: 4px;
-
 }
 
 .movies-list > li:hover .movie-item-link,
 .movie-item-link:focus {
   text-decoration: underline;
 }
+
+.movies-list > li:hover::before,
+.movies-list > li:has(.movie-item-link:focus)::before {
+  transform: scale(1.15);
+}
+
