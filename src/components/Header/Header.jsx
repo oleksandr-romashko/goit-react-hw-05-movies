@@ -9,6 +9,7 @@ const Header = () => {
         <p className={css.references}>
           Any problems or suggestions? Please leave them&nbsp;
           <a 
+            className={css["repo-reference"]}
             href="https://github.com/oleksandr-romashko"
             title="Developer GitHub page"
             target="_blank"
