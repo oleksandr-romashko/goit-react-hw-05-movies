@@ -5,7 +5,7 @@ import api from "services/api";
 
 const MoviesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [foundMovies, setFoundMovies] = useState([]);
+  const [foundMovies, setFoundMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearchQueryChange = (query) => {

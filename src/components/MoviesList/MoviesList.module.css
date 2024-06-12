@@ -1,3 +1,8 @@
+.message-not-found {
+  text-align: center;
+  color: var(--color-text-white);
+}
+
 .movies-list {
   display: flex;
   flex-direction: column;
