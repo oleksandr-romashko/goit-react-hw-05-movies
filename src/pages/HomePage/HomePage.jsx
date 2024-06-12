@@ -1,7 +1,7 @@
-import { Container, FallbackUI, Loader, MoviesList } from "components";
-import css from "./HomPage.module.css";
-import api from "services/api";
 import { useEffect, useState } from "react";
+import { MoviesList, Container, Loader, FallbackUI } from "components";
+import api from "services/api";
+import css from "./HomPage.module.css";
 
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -11,14 +11,13 @@ const HomePage = () => {
   useEffect(() => {
     const getTrendingMovies = () => {
       setIsLoading(true);
-      setError(null);
       api.getTrendingMovies()
         .then(trendingMovies => {
           setTrendingMovies(trendingMovies);
         })
         .catch(error => {
           setError(error);
-          console.log(error);
+          console.error(error);
         })
         .finally(() => {
           setIsLoading(false)

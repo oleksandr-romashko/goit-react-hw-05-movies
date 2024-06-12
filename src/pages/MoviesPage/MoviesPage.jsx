@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Container, FallbackUI, Loader, MoviesList, SearchForm } from "components";
-import css from "./MoviesPage.module.css";
+import { MoviesList, SearchForm, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
+import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,7 +25,7 @@ const MoviesPage = () => {
         })
         .catch(error => {
           setError(error);
-          console.log(error);
+          console.error(error);
         })
         .finally(() => {
           setSearchQuery("")

@@ -1,7 +1,3 @@
-.no-info-message {
-  color: var(--color-text-white);
-}
-
 .list {
   display: flex;
   flex-direction: column;

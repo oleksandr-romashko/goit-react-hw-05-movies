@@ -1,8 +1,8 @@
-import { useParams, Outlet, Link } from "react-router-dom";
-import { AdditionalInfo, Container, FallbackUI, Loader } from "components";
-import css from "./MovieDetailsPage.module.css";
 import { useEffect, useState } from "react";
+import { useParams, Outlet, Link } from "react-router-dom";
+import { AdditionalInfo, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
+import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -14,7 +14,6 @@ const MovieDetailsPage = () => {
   useEffect(() => {
     const getMovieDetails = () => {
       setIsLoading(true);
-      setError(null);
       api.getMovieDetailsById(movieId)
         .then(movie => {
           if (movie.adult) {
@@ -39,7 +38,6 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      {console.log('movieDetails :>> ', movieDetails)}
       <section className={css["back-navigation"]}>
         <Container>
           <Link className={css["back-navigation-link"]} to="/movies">Go back</Link>

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import { Message } from "components";
 import css from "./MoviesList.module.css";
 
 const MoviesList = ({movies}) => {
   if (movies && movies.length === 0) {
-      return <p className={css["message-not-found"]}>We apologize, but we couldn't find any movies matching your request.</p>;
+      return <Message text="We apologize, but we couldn't find any movies matching your request." textAlign="center" />;
   }
 
   if (movies) {
