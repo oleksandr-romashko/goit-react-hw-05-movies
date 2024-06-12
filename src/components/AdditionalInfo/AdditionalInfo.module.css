@@ -57,27 +57,29 @@
   margin-left: 12px;
 }
 
-.additional-info:last-child .option:not(:first-child) {
+.additional-info:last-child .option:hover,
+.additional-info:last-child .option:focus {
+  background-color: var(--color-text-white);
+  color: var(--color-black);
+  outline-offset: 4px;
 }
 
-.additional-info:last-child .option:hover {
+.additional-info:not(:last-child) .option:not(.option:global(.active)):hover {
   background-color: var(--color-text-white);
   color: var(--color-black);
 }
 
 .option:global(.active) {
   border-bottom-width: 0;
+  cursor:default;
 }
 
 .option:not(:global(.active)) {
-  background-color: var(--color-text-white);
-  color: var(--color-black);
   margin-top: 22px;
 }
 
-.option:not(:global(.active)):hover {
-  background-color: unset;
-  color: var(--color-text-white);
+.additional-info:not(:last-child) .option:focus {
+  outline-offset: 3px;
 }
 
 .option:last-child {
