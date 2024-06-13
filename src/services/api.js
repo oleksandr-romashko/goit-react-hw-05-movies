@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_KEY = "f51f93533cb06cebf134fb3842635a6c";
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 
 /**
  * Movie, TV and person objects contain references to different file paths. 
