@@ -17,6 +17,8 @@ jobs:
         run: |
           echo "Reading api key"
           echo "${{ secrets.TMDB_API_KEY_TEST }}"
+          echo "${{TMDB_API_KEY}}"
+          echo "$API_KEY"
           echo "Writing api key into .env file"
           echo "REACT_APP_TMDB_API_KEY=$API_KEY" > .env
           cat .env
