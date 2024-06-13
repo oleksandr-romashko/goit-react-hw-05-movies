@@ -86,11 +86,11 @@
 }
 
 .navigation {
-  margin-top: 4px;
+  margin-top: 6px;
   display: flex;
   justify-content: center;
   column-gap: 24px;
-  padding: 8px 0 12px 0;
+  padding: 10px 0 10px 0;
 
   font-size: 22px;
   font-weight: 600;
@@ -99,7 +99,7 @@
 
 .navigation-link {
   display: inline-flex;
-  padding: 4px 4px;
+  padding: 4px;
   text-decoration: none;
   font-weight: 600;
   color: var(--color-pure-white);
