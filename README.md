@@ -45,6 +45,8 @@ The live page for this repository can be viewed at [GitHub Pages](https://oleksa
 
   1. Make sure you have an LTS version of Node.js installed on your computer. [Download and install](https://nodejs.org/en/) if needed.
   1. Install the project's base dependencies with the `npm install` command.
+  1. Add [TMDB API key](themoviedb.org) to `REACT_APP_TMDB_API_KEY` variable in `.env` file OR (better) [add API key as a secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) to your GitHub repository.
+  1. (Optional for correctness of deployed app) Fix `homepage` value in `package.json` (should match your repo GitHub URL) and `REACT_APP_ROUTING_BASENAME` in `.env.production` (location within your application, when your application is served from a sub-directory on the server) when deploying to GitHub to match your case.
   1. Start development mode by running the `npm start` command.
   1. Go to [localhost:3000](http://localhost:3000/) (port may vary) in your browser. This page will automatically reload after saving changes to the project files.
 
