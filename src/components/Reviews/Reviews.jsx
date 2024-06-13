@@ -40,7 +40,11 @@ const Reviews = () => {
       <ul className={css.list}>
         {userReviews.results.map(({id, author, content, created_at}) => (
           <li key={id} className={css.item}>
-            <div className={css.details}><span className={css.author}>Author: {author}</span> on {new Date(created_at).toLocaleDateString()} at {new Date(created_at).toLocaleTimeString()}</div>
+            <div className={css["review-details"]}>
+              <div className={css.author}>Author: {author}</div>
+              <div className={css["date-time"]}>on {new Date(created_at).toLocaleDateString()} at {new Date(created_at).toLocaleTimeString()}
+              </div>
+            </div>
             <p>{content}</p>
           </li>
         ))}
