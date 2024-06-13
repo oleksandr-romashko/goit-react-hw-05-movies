@@ -4,11 +4,13 @@ import css from "./BasicLayout.module.css";
 
 const BasicLayout = () => {
   return (
-    <main className={css.main}>
+    <>
       <Header />
-      <Outlet />
+      <main className={css.main}>
+        <Outlet />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 };
 
