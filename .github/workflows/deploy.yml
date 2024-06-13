@@ -13,16 +13,16 @@ jobs:
 
       - name: Install, lint, build 🔧
         env:
-          API_KEY: ${{ secrets.TMDB_API_KEY_TEST }}
+          API_KEY: ${{secrets.TMDB_API_KEY_TEST}}
         run: |
           echo "Reading api key"
-          echo "${{ secrets.TMDB_API_KEY_TEST }}"
-          echo "${{TMDB_API_KEY}}"
+          echo "${{secrets.TMDB_API_KEY_TEST}}"
+          echo "${{secrets.TMDB_API_KEY}}"
           echo "$API_KEY"
           echo "Writing api key into .env file"
           echo "REACT_APP_TMDB_API_KEY=$API_KEY" > .env
           cat .env
-          echo "${{ env.TEST_VAR }}"
+          echo "${{env.TEST_VAR}}"
           npm install
           npm run lint:js
           npm run build
