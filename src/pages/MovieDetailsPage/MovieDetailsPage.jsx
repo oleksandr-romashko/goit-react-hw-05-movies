@@ -50,7 +50,7 @@ const MovieDetailsPage = () => {
               <div>
                 <div className={css.details}>
                   <div className={css["preview-wrapper"]}>
-                    <img className={css["preview-image"]} src={`https://www.themoviedb.org/t/p/w342${poster_path}`} alt="" aria-label={`${title} preview`} />
+                    <img className={css["preview-image"]} src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}`} alt="" aria-label={`${title} preview`} />
                   </div>
                   <div className={css.description}>
                     <div>

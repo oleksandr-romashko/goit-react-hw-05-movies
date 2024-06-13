@@ -1,6 +1,17 @@
 import axios from "axios";
-
 const API_KEY = "f51f93533cb06cebf134fb3842635a6c";
+
+/**
+ * Movie, TV and person objects contain references to different file paths. 
+ * In order to generate a fully working image URL, you'll need 3 pieces of data. 
+ * Those pieces are a `base_url`, a `file_size` and a `file_path`.
+ * The first two pieces can be retrieved by calling the /configuration API
+ * https://developer.themoviedb.org/reference/configuration-details
+ */
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
+const IMAGE_POSTER_SIZE = "w342";
+const IMAGE_PROFILE_SIZE = "w185";
+
 
 /**
  * Default common parameters for all API requests.
@@ -40,7 +51,6 @@ const getMovieDetailsById = async movieId => {
   const response = await axios.get(
     `movie/${movieId}?api_key=${API_KEY}&language=en-US`
   );
-  console.log('response :>> ', response);
   return response.data;
 };
 
@@ -66,6 +76,9 @@ const getMovieReviewsById = async movieId => {
 };
 
 const api = {
+  IMAGE_BASE_URL,
+  IMAGE_POSTER_SIZE,
+  IMAGE_PROFILE_SIZE,
   getTrendingMovies, 
   getMoviesByTitle, 
   getMovieDetailsById, 

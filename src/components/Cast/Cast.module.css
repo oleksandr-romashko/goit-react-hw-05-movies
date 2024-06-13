@@ -1,8 +1,8 @@
 .cast-list {
   display: grid;
   max-width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
-  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: 18px;
   margin-top: 0;
   margin-bottom: 0;
   padding: 0;
@@ -11,10 +11,31 @@
   margin-right: auto;
 }
 
+@media only screen and (min-width: 320px) {
+  .cast-list {
+    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+    grid-gap: 24px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .cast-list {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-gap: 24px;
+  }
+}
+
 .cast-item {
+  min-height: 360px;
   display: flex;
   flex-direction: column;
-  height: 381px;
+  justify-content: flex-end;
+  max-height: 400px;
+  /* border-color: var(--color-text-white);   // for cards with bordered style
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  overflow:hidden; */
 }
 
 .actor-image {
@@ -31,19 +52,23 @@
 
 .details {
   min-height: 120px;
+  height: fit-content;
   margin-right: 1px;
   margin-bottom: 1px;
   margin-left: 1px;
-  padding: 10px 8px 8px 8px;
+  /* padding: 12px 8px 8px 8px; // for cards with bordered style */
+  padding: 12px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   gap: 4px;
-  background-color: var(--color-text-white);
-  border-color: var(--color-text-white);
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 8px;
+  font-size: 14px;
+  color: var(--color-text-white);
+}
+
+@media only screen and (min-width: 576px) {
+  .details {
+    font-size: 16px;
+  }
 }
 
 .name {
