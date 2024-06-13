@@ -15,7 +15,8 @@ jobs:
         env:
           API_KEY: ${{ secrets.TMDB_API_KEY_TEST }}
         run: |
-          run echo "$API_KEY"
+          echo "REACT_APP_TMDB_API_KEY=$API_KEY" > .env
+          cat .env
           npm install
           npm run lint:js
           npm run build
