@@ -27,4 +27,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env file
-# .env
+.env
