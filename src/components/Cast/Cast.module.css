@@ -13,7 +13,7 @@
 
 @media only screen and (min-width: 320px) {
   .cast-list {
-    grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
     grid-gap: 24px;
   }
 }
