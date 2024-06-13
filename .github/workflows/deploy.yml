@@ -17,9 +17,6 @@ jobs:
         run: |
           echo "Writing api key into .env file"
           echo "REACT_APP_TMDB_API_KEY=${API_KEY}" > .env
-          echo "${{secrets.TMDB_API_KEY}}"
-          echo ${API_KEY}
-          cat .env
           npm install
           npm run lint:js
           npm run build
