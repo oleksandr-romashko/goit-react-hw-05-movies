@@ -7,6 +7,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: github-pages
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
@@ -18,7 +19,7 @@ jobs:
           echo "Reading api key"
           echo "${{secrets.TMDB_API_KEY_TEST}}"
           echo "${{secrets.TMDB_API_KEY}}"
-          echo "$API_KEY"
+          echo $API_KEY
           echo "Writing api key into .env file"
           echo "REACT_APP_TMDB_API_KEY=$API_KEY" > .env
           cat .env
