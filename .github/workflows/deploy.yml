@@ -13,9 +13,12 @@ jobs:
 
       - name: Install, lint, build 🔧
         env:
+          ROUTING_BASENAME: ${{ env.REACT_APP_ROUTING_BASENAME }}
           API_KEY: ${{secrets.TMDB_API_KEY}}
         run: |
-          echo "Writing api key into .env file"
+          echo "Writing basename into .env file"
+          echo "REACT_APP_ROUTING_BASENAME=${ROUTING_BASENAME}" > .env
+          echo "Adding api key into .env file"
           echo "REACT_APP_TMDB_API_KEY=${API_KEY}" >> .env
           npm install
           npm run lint:js
