@@ -13,7 +13,7 @@ jobs:
 
       - name: Install, lint, build 🔧
         env:
-          ROUTING_BASENAME: ${{ env.REACT_APP_ROUTING_BASENAME }}
+          ROUTING_BASENAME: ${{ vars.REACT_APP_ROUTING_BASENAME }}
           API_KEY: ${{secrets.TMDB_API_KEY}}
         run: |
           echo "Writing basename into .env file"
