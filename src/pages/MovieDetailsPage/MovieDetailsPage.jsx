@@ -59,8 +59,7 @@ const MovieDetailsPage = () => {
                       className={css["preview-image"]} 
                       src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}`} 
                       alt="" 
-                      aria-label={`${title} 
-                      preview`} 
+                      aria-label={`${title} preview`} 
                     />
                   </div>
                   <div className={css.description}>
