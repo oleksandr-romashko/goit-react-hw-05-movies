@@ -49,7 +49,7 @@ const getMoviesByTitle = async keyword => {
  */
 const getMovieDetailsById = async movieId => {
   const response = await axios.get(
-    `movie/${movieId}?api_key=${API_KEY}&language=en-US`
+    `movie/${movieId}`
   );
   return response.data;
 };
