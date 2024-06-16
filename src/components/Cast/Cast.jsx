@@ -40,7 +40,14 @@ const Cast = () => {
       <ul className={css["cast-list"]}>
         {actorCast.map(({id, profile_path, name, character}) => (
           <li key={id} className={css["cast-item"]}>
-            <img className={css["actor-image"]} src={`${api.IMAGE_BASE_URL}${api.IMAGE_PROFILE_SIZE}${profile_path}`} alt="" aria-label={`${name} portrait`} />
+            {profile_path && 
+              <img 
+                className={css["actor-image"]} 
+                src={`${api.IMAGE_BASE_URL}${api.IMAGE_PROFILE_SIZE}${profile_path}`} 
+                alt="" 
+                aria-label={`${name} portrait`} 
+              />
+            }
             <div className={css.details}>
               <p className={css.name}>{name}</p>
               <div>

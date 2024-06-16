@@ -10,7 +10,7 @@ const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
  */
 const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/";
 const IMAGE_POSTER_SIZE = "w500";
-const IMAGE_PROFILE_SIZE = "w185";
+const IMAGE_PROFILE_SIZE = "h632";
 
 
 /**
