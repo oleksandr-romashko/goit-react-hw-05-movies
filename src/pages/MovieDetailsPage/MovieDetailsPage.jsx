@@ -55,14 +55,12 @@ const MovieDetailsPage = () => {
               <div>
                 <div className={css.details}>
                   <div className={css["preview-wrapper"]}>
-                    {poster_path && 
-                      <img 
-                        className={css["preview-image"]} 
-                        src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}`} 
-                        alt="" 
-                        aria-label={`${title} preview`} 
-                      />
-                    }
+                    <img 
+                      className={css["preview-image"]} 
+                      src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}` || "images/no-preview.jpg"} 
+                      alt="" 
+                      aria-label={`${title} preview`} 
+                    />
                   </div>
                   <div className={css.description}>
                     <div>
