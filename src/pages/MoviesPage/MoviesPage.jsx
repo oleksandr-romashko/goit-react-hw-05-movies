@@ -1,44 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MoviesList, SearchForm, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
 import css from "./MoviesPage.module.css";
 
 const MoviesPage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [foundMovies, setFoundMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleSearchQueryChange = (query) => {
-    setSearchQuery(query)
-  }
-
-  const handleMovieSearch = (event) => {
-    event.preventDefault();
-    const query = event.target.searchQuery.value;
-    if(query) {
-      setIsLoading(true);
-      setError(null);
-      api.getMoviesByTitle(query)
-        .then(foundMovies => {
-          setFoundMovies(foundMovies);
-        })
-        .catch(error => {
-          setError(error);
-          console.error(error);
-        })
-        .finally(() => {
-          setSearchQuery("")
-          setIsLoading(false)
-          event.target.searchQuery.blur();
-        });
+  useEffect(() => {
+    const handleMovieSearch = (query) => {
+      if(query) {
+        setIsLoading(true);
+        setError(null);
+        api.getMoviesByTitle(query)
+          .then(foundMovies => {
+            setFoundMovies(foundMovies);
+          })
+          .catch(error => {
+            setError(error);
+            console.error(error);
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+      }
     }
-  }
+    
+    if (!searchParams.get("query")) return;
+
+    handleMovieSearch(searchParams.get("query"));
+  }, [searchParams]);
+
+  const handleSearchParamsUpdate = query => {
+    setSearchParams({query: query});
+  };
 
   return (
     <section className={css["movies"]}>
       <Container>
-          <SearchForm searchQuery={searchQuery} onQueryChange={handleSearchQueryChange} onSearch={handleMovieSearch} />
+          <SearchForm onSearch={handleSearchParamsUpdate} />
           {error && <FallbackUI />}
           {isLoading ? <Loader /> : <MoviesList movies={foundMovies} />}
       </Container>

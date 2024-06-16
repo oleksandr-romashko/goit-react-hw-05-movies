@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, Outlet, Link } from "react-router-dom";
+import { useParams, Outlet, Link, useLocation } from "react-router-dom";
 import { AdditionalInfo, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
 import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-
+  const location = useLocation();
   const [movieDetails, setMovieDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -40,7 +40,12 @@ const MovieDetailsPage = () => {
     <>
       <section className={css["back-navigation"]}>
         <Container>
-          <Link className={css["back-navigation-link"]} to="/movies">Go back</Link>
+          <Link 
+            className={css["back-navigation-link"]} 
+            to={(location.state && location.state.from) || "/"}
+          >
+            Go back
+          </Link>
         </Container>
       </section>
       {isLoading ? <Loader /> : 
@@ -50,7 +55,13 @@ const MovieDetailsPage = () => {
               <div>
                 <div className={css.details}>
                   <div className={css["preview-wrapper"]}>
-                    <img className={css["preview-image"]} src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}`} alt="" aria-label={`${title} preview`} />
+                    <img 
+                      className={css["preview-image"]} 
+                      src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}`} 
+                      alt="" 
+                      aria-label={`${title} 
+                      preview`} 
+                    />
                   </div>
                   <div className={css.description}>
                     <div>

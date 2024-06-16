@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Message } from "components";
 import css from "./MoviesList.module.css";
 
 const MoviesList = ({movies}) => {
+  const location = useLocation();
+
   if (movies && movies.length === 0) {
       return <Message text="We apologize, but we couldn't find any movies matching your request." textAlign="center" />;
   }
@@ -17,6 +19,7 @@ const MoviesList = ({movies}) => {
                 <Link 
                   className={css["movie-item-link"]} 
                   to={`/movies/${id}`}
+                  state={{ from: location }}
                 >
                   {title} {releaseDate && `(${releaseYear})`}
                 </Link>
