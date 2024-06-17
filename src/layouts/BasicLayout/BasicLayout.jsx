@@ -1,5 +1,6 @@
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { Header, Footer } from "components";
+import { Header, Footer, Loader } from "components";
 import css from "./BasicLayout.module.css";
 
 const BasicLayout = () => {
@@ -7,7 +8,9 @@ const BasicLayout = () => {
     <>
       <Header />
       <main className={css.main}>
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
     </>

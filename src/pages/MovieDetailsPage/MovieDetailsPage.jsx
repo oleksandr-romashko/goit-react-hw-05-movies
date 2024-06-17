@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams, Outlet, Link, useLocation } from "react-router-dom";
 import { AdditionalInfo, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
@@ -42,7 +42,7 @@ const MovieDetailsPage = () => {
         <Container>
           <Link 
             className={css["back-navigation-link"]} 
-            to={(location.state && location.state.from) || "/"}
+            to={location.state?.from ?? "/"}
           >
             Go back
           </Link>
@@ -84,7 +84,9 @@ const MovieDetailsPage = () => {
                   </div>
                 </div>
                 <AdditionalInfo />
-                <Outlet />
+                <Suspense fallback={<Loader />}>
+                  <Outlet />
+                </Suspense>
               </div>
             }
           </Container>
