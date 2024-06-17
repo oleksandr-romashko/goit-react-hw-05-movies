@@ -43,7 +43,10 @@ const MoviesPage = () => {
       <Container>
           <SearchForm onSearch={handleSearchParamsUpdate} />
           {error && <FallbackUI />}
-          {isLoading ? <Loader /> : <MoviesList movies={foundMovies} />}
+          {isLoading 
+            ? <Loader /> 
+            : <MoviesList movies={foundMovies} 
+          />}
       </Container>
     </section>
   )
