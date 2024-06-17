@@ -6,7 +6,7 @@ import css from "./Cast.module.css";
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [actorCast, setactorCast] = useState(null)
+  const [actorCast, setActorCast] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Cast = () => {
       setIsLoading(true);
       api.getMovieCastById(movieId)
         .then(cast => {
-          setactorCast(cast);
+          setActorCast(cast);
         })
         .catch(error => {
           console.log(error);
