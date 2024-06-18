@@ -16,7 +16,7 @@ const SearchForm = () => {
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchParams({title: event.target.searchQuery.value});
+    setSearchParams({search: event.target.searchQuery.value});
     event.target.reset();
     event.target.searchQuery.blur();
   };
@@ -27,11 +27,11 @@ const SearchForm = () => {
       onSubmit={handleSubmit}
     >
       <input 
+        id="searchQueryInput"
         name="searchQuery"
         type="text" 
         className={css["search-query-input"]} 
         placeholder="Movie name" 
-        autoFocus 
         autoComplete="off" 
         aria-label="movie search title"
         required 
