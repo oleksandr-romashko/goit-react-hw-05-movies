@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader, Message } from "components";
 import api from "services/api";
+import noImage from "images/no-image.jpg";
 import css from "./Cast.module.css";
 
 const Cast = () => {
@@ -10,21 +11,21 @@ const Cast = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const getActorCast = () => {
-      setIsLoading(true);
-      api.getMovieCastById(movieId)
-        .then(cast => {
-          setActorCast(cast);
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        .finally(() => {
-          setIsLoading(false)
-        });
+    if (!movieId) {
+      return;
     };
-    
-    getActorCast();
+
+    setIsLoading(true);
+    api.getMovieCastById(movieId)
+      .then(cast => {
+        setActorCast(cast);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      });
   }, [movieId])
 
   if (isLoading) {
@@ -40,14 +41,12 @@ const Cast = () => {
       <ul className={css["cast-list"]}>
         {actorCast.map(({id, profile_path, name, character}) => (
           <li key={id} className={css["cast-item"]}>
-            {profile_path && 
-              <img 
-                className={css["actor-image"]} 
-                src={`${api.IMAGE_BASE_URL}${api.IMAGE_PROFILE_SIZE}${profile_path}`} 
-                alt="" 
-                aria-label={`${name} portrait`} 
-              />
-            }
+            <img 
+              className={css["actor-image"]} 
+              src={profile_path ? `${api.IMAGE_BASE_URL}${api.IMAGE_PROFILE_SIZE}${profile_path}` : noImage} 
+              alt="" 
+              aria-label={`${name} portrait`} 
+            />
             <div className={css.details}>
               <p className={css.name}>{name}</p>
               <div>
