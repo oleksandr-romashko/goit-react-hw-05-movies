@@ -34,7 +34,7 @@ const getTrendingMovies = async () => {
  * Searches for a movies by their title.
  */
 const getMoviesByTitle = async keyword => {
-  const response = await await axios.get("search/movie", {
+  const response = await axios.get("search/movie", {
     params: {
       query: keyword,
       page:1,
