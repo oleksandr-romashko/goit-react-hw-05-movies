@@ -1,12 +1,14 @@
-import PropTypes from "prop-types";
+import { useSearchParams } from "react-router-dom";
 import css from "./SearchForm.module.css";
 
 /**
  * Form for submitting search queries.
+ * Updates 
  * @param {callback} props.onSearch Callback to pass search query. 
  * @returns {React.Component}
  */
-const SearchForm = ({onSearch}) => {
+const SearchForm = () => {
+  const [, setSearchParams] = useSearchParams();
   /**
    * Handles form submit by calling provided props function.
    * Clears form values and removes focus.
@@ -14,8 +16,8 @@ const SearchForm = ({onSearch}) => {
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearch(event.target.searchQuery.value);
-    event.target.resetForm();
+    setSearchParams(event.target.searchQuery.value);
+    event.target.reset();
     event.target.searchQuery.blur();
   };
 
@@ -40,7 +42,3 @@ const SearchForm = ({onSearch}) => {
 };
 
 export default SearchForm;
-
-SearchForm.propTypes = {
-  onSearch: PropTypes.func.isRequired,
-}
