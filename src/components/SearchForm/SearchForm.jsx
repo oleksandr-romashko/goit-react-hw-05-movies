@@ -8,24 +8,14 @@ import css from "./SearchForm.module.css";
  * @returns {React.Component}
  */
 const SearchForm = ({onSearch}) => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  /**
-   * Handles input change by changing correspond state value.
-   * @param {React.SyntheticEvent} event 
-   */
-  const handleSearchQueryChange = (event) => {
-    setSearchQuery(event.target.value);
-  };
-
   /**
    * Handles form submit by calling provided props function.
    * @param {React.SyntheticEvent} event 
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearch(searchQuery);
-    setSearchQuery("");
+    onSearch(event.target.searchQuery.value);
+    event.target.resetForm();
     event.target.searchQuery.blur();
   };
 
@@ -36,8 +26,6 @@ const SearchForm = ({onSearch}) => {
     >
       <input 
         name="searchQuery"
-        onChange={handleSearchQueryChange}
-        value={searchQuery}
         type="text" 
         className={css["search-query-input"]} 
         placeholder="Movie name" 
