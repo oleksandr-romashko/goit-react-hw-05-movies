@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from "react";
 import { useParams, Outlet, Link, useLocation } from "react-router-dom";
 import { AdditionalInfo, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
+import noImage from "images/no-image.jpg";
 import css from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
@@ -12,29 +13,35 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
   
   useEffect(() => {
-    const getMovieDetails = () => {
-      setIsLoading(true);
-      api.getMovieDetailsById(movieId)
-        .then(movie => {
-          if (movie.adult) {
-            throw new Error("Unsupported type of content.")
-          }
-          setMovieDetails(movie);
-        })
-        .catch(error => {
-          setError(error);
-          console.error(error);
-        })
-        .finally(() => {
-          setIsLoading(false)
-        });
+  
+  }, [movieId]);
+
+  useEffect(() => {
+    if (!movieId) {
+      return;
     };
-    
-    getMovieDetails();
+
+    setIsLoading(true);
+    api.getMovieDetailsById(movieId)
+      .then(movie => {
+        if (movie.adult) {
+          throw new Error("Unsupported type of content.")
+        }
+        setMovieDetails(movie);
+      })
+      .catch(error => {
+        setError(error);
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      });
   }, [movieId])
 
+  const backLink = location.state?.from ?? '/';
   const {title, overview, poster_path, release_date, vote_average, genres} = movieDetails;
   const releaseYear = release_date && new Date(release_date).getFullYear();
+  const posterUrl = poster_path ? `${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}` : noImage;
 
   return (
     <>
@@ -42,7 +49,7 @@ const MovieDetailsPage = () => {
         <Container>
           <Link 
             className={css["back-navigation-link"]} 
-            to={location.state?.from ?? "/"}
+            to={backLink}
           >
             Go back
           </Link>
@@ -57,8 +64,8 @@ const MovieDetailsPage = () => {
                   <div className={css["preview-wrapper"]}>
                     <img 
                       className={css["preview-image"]} 
-                      src={`${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}` || "images/no-preview.jpg"} 
-                      alt="" 
+                      src={posterUrl} 
+                      alt="poster" 
                       aria-label={`${title} preview`} 
                     />
                   </div>
