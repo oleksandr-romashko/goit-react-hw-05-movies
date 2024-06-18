@@ -9,6 +9,7 @@ import css from "./SearchForm.module.css";
 const SearchForm = ({onSearch}) => {
   /**
    * Handles form submit by calling provided props function.
+   * Clears form values and removes focus.
    * @param {React.SyntheticEvent} event 
    */
   const handleSubmit = (event) => {
