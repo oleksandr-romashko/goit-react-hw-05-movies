@@ -16,7 +16,7 @@ const SearchForm = () => {
    */
   const handleSubmit = (event) => {
     event.preventDefault();
-    setSearchParams(event.target.searchQuery.value);
+    setSearchParams({title: event.target.searchQuery.value});
     event.target.reset();
     event.target.searchQuery.blur();
   };
