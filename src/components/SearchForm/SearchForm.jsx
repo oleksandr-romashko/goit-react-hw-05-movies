@@ -14,7 +14,7 @@ const SearchForm = () => {
    * Clears form values and removes focus.
    * @param {React.SyntheticEvent} event 
    */
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
     event.preventDefault();
     setSearchParams({search: event.target.searchQuery.value});
     event.target.reset();
