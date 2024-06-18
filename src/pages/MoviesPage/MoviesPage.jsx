@@ -11,11 +11,11 @@ const MoviesPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const handleMovieSearch = (query) => {
-      if(query) {
+    const handleMovieSearch = (searchQuery) => {
+      if(searchQuery) {
         setIsLoading(true);
         setError(null);
-        api.getMoviesByTitle(query)
+        api.getMoviesByTitle(searchQuery)
           .then(foundMovies => {
             setFoundMovies(foundMovies);
           })
@@ -29,13 +29,15 @@ const MoviesPage = () => {
       }
     }
     
-    if (!searchParams.get("query")) return;
-
-    handleMovieSearch(searchParams.get("query"));
+    const searchQuery = searchParams.get("search");
+    if (!searchQuery) {
+      return;
+    }
+    handleMovieSearch(searchQuery);
   }, [searchParams]);
 
-  const handleSearchParamsUpdate = query => {
-    setSearchParams({query: query});
+  const handleSearchParamsUpdate = searchQuery => {
+    setSearchParams({search: searchQuery});
   };
 
   return (
