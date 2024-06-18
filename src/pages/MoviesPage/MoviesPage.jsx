@@ -11,27 +11,30 @@ const MoviesPage = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const handleMovieSearch = () => {
-      setIsLoading(true);
-      setError(null);
-      api.getMoviesByTitle(searchQuery)
-        .then(foundMovies => {
-          setFoundMovies(foundMovies);
-        })
-        .catch(error => {
-          setError(error);
-          console.error(error);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    };
-    
-    const searchQuery = searchParams.get("title");
-    if (!searchParams || !searchQuery) {
+    const query = searchParams.get("search");
+    if (!searchParams || !query) {
+      setFoundMovies(null);
+      const inputEl = document.getElementById("searchQueryInput");
+      if (document.activeElement !== inputEl) {
+        inputEl.focus();
+      }
       return;
     }
-    handleMovieSearch(searchQuery);
+    
+    setIsLoading(true);
+    setError(null);
+    api.getMoviesByTitle(query)
+      .then(foundMovies => {
+        setFoundMovies(foundMovies);
+      })
+      .catch(error => {
+        setError(error);
+        setFoundMovies(null);
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [searchParams]);
 
   return (
@@ -39,7 +42,7 @@ const MoviesPage = () => {
       <Container>
           <SearchForm />
           {error && <FallbackUI />}
-          {isLoading
+          {isLoading && !error
             ? <Loader />
             : <MoviesList movies={foundMovies} />
           }
