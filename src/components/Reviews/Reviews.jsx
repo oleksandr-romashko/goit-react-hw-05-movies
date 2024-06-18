@@ -6,25 +6,25 @@ import css from "./Reviews.module.css";
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [userReviews, setUserRevies] = useState(null)
+  const [userReviews, setUserReviews] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const getUserRevies = () => {
-      setIsLoading(true);
-      api.getMovieReviewsById(movieId)
-        .then(reviews => {
-          setUserRevies(reviews);
-        })
-        .catch(error => {
-          console.error(error);
-        })
-        .finally(() => {
-          setIsLoading(false)
-        });
+    if (!movieId) {
+      return;
     };
-    
-    getUserRevies();
+
+    setIsLoading(true);
+    api.getMovieReviewsById(movieId)
+      .then(reviews => {
+        setUserReviews(reviews);
+      })
+      .catch(error => {
+        console.error(error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      });
   }, [movieId])
 
   if (isLoading) {
