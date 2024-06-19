@@ -37,7 +37,6 @@ main:has(> .back-navigation) {
 }
 
 .movie {
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
@@ -77,8 +76,27 @@ main:has(> .back-navigation) {
   margin-right: auto;
   width: 342px;
   max-height: 513px;
+  min-height: 267px;
   border-radius: 8px;
   object-fit: cover;
+}
+
+@media only screen and (min-width: 576px) {
+  .preview-image {
+    min-height: 267px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .preview-image {
+    min-height: 356px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .preview-image {
+    min-height: 470px;
+  }
 }
 
 .description {
