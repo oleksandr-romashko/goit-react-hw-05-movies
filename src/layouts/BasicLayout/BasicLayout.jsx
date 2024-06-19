@@ -7,7 +7,7 @@ const BasicLayout = () => {
   return (
     <>
       <Header />
-      <main className={css.main}>
+      <main className={css["main-content"]}>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>

@@ -1,7 +1,6 @@
 .home {
   display: flex;
   flex-direction: column;
-  padding-top: 96px;
   color: var(--color-text-white);
 }
 
