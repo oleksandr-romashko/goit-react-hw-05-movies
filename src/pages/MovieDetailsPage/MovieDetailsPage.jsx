@@ -27,13 +27,11 @@ const MovieDetailsPage = () => {
           return;
         }
         setMovieDetails(movie);
+        setIsLoading(false)
       })
       .catch(error => {
         setError(error);
         console.error(error);
-      })
-      .finally(() => {
-        setIsLoading(false)
       });
   }, [movieId]);
 
@@ -76,53 +74,55 @@ const MovieDetailsPage = () => {
 
       {isLoading 
         ? <Loader /> 
-        : <section className={css["movie"]}>
-            <Container>
-              {error && <FallbackUI /> }
-              {!error && movieDetails &&
-                <div className={css.details}>
-                  <div className={css["preview-wrapper"]}>
-                    <img 
-                      className={css["preview-image"]} 
-                      src={posterUrl} 
-                      alt="poster" 
-                      aria-label={`${title} preview`} 
-                    />
+        : <>
+            <section className={css["movie"]}>
+              <Container>
+                {error && <FallbackUI /> }
+                {!error && movieDetails &&
+                  <div className={css.details}>
+                    <div className={css["preview-wrapper"]}>
+                      <img 
+                        className={css["preview-image"]} 
+                        src={posterUrl} 
+                        alt="poster" 
+                        aria-label={`${title} preview`} 
+                      />
+                    </div>
+                    <div className={css.description}>
+                      <div>
+                        <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
+                        <p>User Score: {Math.trunc(vote_average * 10)}%</p>
+                      </div>
+                      <div>
+                        <h2 className={css["movie-subtitle"]}>Overview</h2>
+                        <p>{overview}</p>
+                      </div>
+                      <div>
+                        <h2 className={css["movie-subtitle"]}>Genres</h2>
+                        <ul className={css["genres-list"]}>
+                          {genres && genres.map(({name})=> (
+                            <li key={name}>
+                              <span>{name}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
-                  <div className={css.description}>
-                    <div>
-                      <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
-                      <p>User Score: {Math.trunc(vote_average * 10)}%</p>
-                    </div>
-                    <div>
-                      <h2 className={css["movie-subtitle"]}>Overview</h2>
-                      <p>{overview}</p>
-                    </div>
-                    <div>
-                      <h2 className={css["movie-subtitle"]}>Genres</h2>
-                      <ul className={css["genres-list"]}>
-                        {genres && genres.map(({name})=> (
-                          <li key={name}>
-                            <span>{name}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              }
-            </Container>
-          </section>
-      }
+                }
+              </Container>
+            </section>
 
-      <section>
-        <Container>
-          <AdditionalInfo />
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-        </Container>
-      </section>
+            <section>
+              <Container>
+                <AdditionalInfo />
+                <Suspense fallback={<Loader />}>
+                  <Outlet />
+                </Suspense>
+              </Container>
+            </section>
+        </>
+      }
     </>
   )
 };
