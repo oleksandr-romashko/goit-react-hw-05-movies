@@ -112,5 +112,5 @@
 }
 
 .navigation-link:global(.active) {
-  color: #E64D6A;
+  color: var(--color-accent-red);
 }
