@@ -75,8 +75,7 @@ const Reviews = () => {
 
     return (
       <>
-        <ul 
-          id="reviewsList" 
+        <ul
           className={`${css.list} ${FUNCTIONALITY_SHOW_LESS ? "func-show-less" : ""}`} 
           onClick={handleReviewClick}>
           {userReviews.results.map(({id, author, content, created_at}) => (
