@@ -4,6 +4,11 @@ import { FallbackUI, Loader, Message, Pagination } from "components";
 import api from "services/api";
 import css from "./Reviews.module.css";
 
+const FUNCTIONALITY_SHOW_LESS = process.env.REACT_APP_FUNC_SHOW_LESS.toLowerCase() === "true";
+console.log('process.env.REACT_APP_FUNC_SHOW_LESS :>> ', process.env.REACT_APP_FUNC_SHOW_LESS);
+console.log('typeof  FUNCTIONALITY_SHOW_LESS:>> ', typeof FUNCTIONALITY_SHOW_LESS);
+console.log('FUNCTIONALITY_SHOW_LESS :>> ', FUNCTIONALITY_SHOW_LESS);
+
 const MESSAGE_NO_REVIEWS = "We have no reviews for this movie.";
 const MESSAGE_NO_MORE_REVIEWS = "We have no more reviews for this movie.";
 
@@ -29,8 +34,6 @@ const Reviews = () => {
       .then(reviews => {
         // initially checks for user reviews
         // then checks if there are reviews update
-        console.log('reviews :>> ', reviews);
-        console.log('userReviews :>> ', userReviews);
         if (
           !userReviews ||
           reviews.total_results !== userReviews.total_results ||
@@ -58,11 +61,30 @@ const Reviews = () => {
       return <Message text={MESSAGE_NO_REVIEWS} textAlign="left" />
     }
 
+    const handleReviewClick = (event) => {
+      if (event.target.nodeName === "BUTTON") {
+        const btnEl = event.target;
+        const itemEl = btnEl.closest(`.${css.item}`);
+
+        if (itemEl.classList.contains('js-opened')) {
+          btnEl.textContent = "Show more";
+          itemEl.classList.remove('js-opened');
+        } else {
+          btnEl.textContent = "Show less";
+          itemEl.classList.add('js-opened');
+        }
+      }
+    }
+
     return (
       <>
-        <ul className={css.list}>
+        {console.log("rendering reviews")}
+        <ul 
+          id="reviewsList" 
+          className={`${css.list} ${FUNCTIONALITY_SHOW_LESS ? "func-show-less" : ""}`} 
+          onClick={handleReviewClick}>
           {userReviews.results.map(({id, author, content, created_at}) => (
-            <li key={id} className={css.item}>
+            <li key={id} className={`${css.item} truncate`}>
               <div className={css["review-details"]}>
                 <span className={css.author}>Author: {author}</span>
                 <span className={css["date-time"]}>
@@ -70,16 +92,22 @@ const Reviews = () => {
                   &nbsp;at {new Date(created_at).toLocaleTimeString()}
                 </span>
               </div>
-              <p>{content}</p>
+              <p className={css["review-text"]}>{content}</p>
+              <button 
+                className={css["show-btn"]} 
+                type="button"
+              >
+                Show more
+              </button>
             </li>
           ))}
         </ul>
         {userReviews.total_pages > 1 
           ? <Pagination 
-              page={page} 
-              total_pages={userReviews.total_pages} 
-              onPageChange={setPage} 
-            /> 
+          page={page} 
+          total_pages={userReviews.total_pages} 
+          onPageChange={setPage} 
+          /> 
           : <Message text={MESSAGE_NO_MORE_REVIEWS} marginTop="24px" />
         }
       </>

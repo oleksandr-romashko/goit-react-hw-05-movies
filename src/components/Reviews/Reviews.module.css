@@ -33,3 +33,99 @@
 .date-time {
   font-size: 14px;
 }
+
+:global(.truncate) .review-text {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: calc(24px * 2); /* To support IE 11 */
+  transition: all 0.4s ease-in-out;
+}
+
+.item:global(.js-opened) .review-text {
+  -webkit-line-clamp: 40;
+  max-height: 40em;
+}
+
+.show-btn {
+  position: relative;
+  display: block;
+  min-width: 116px;
+  margin-top: 6px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 22px;
+  font-size: 14px;
+  text-align: center;
+  color: inherit;
+  background-color: transparent;
+  border-radius: 6px;
+}
+
+.show-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.show-btn::before,
+.show-btn::after {
+  position: absolute;
+  display: block;
+  content: url("images/left-arrow.svg");
+  
+  width: 14px;
+  height: 16px;
+  opacity: 0;
+  transition: opacity 180ms ease-out, top 180ms ease-out;
+}
+
+.show-btn::before {
+  left: 2px;
+}
+
+.show-btn::after {
+  right: 2px;
+}
+
+.show-btn:hover::before,
+.show-btn:hover::after,
+.show-btn:focus::before,
+.show-btn:focus::after {
+  opacity: 1;
+}
+
+.item:not(:global(.js-opened)) .show-btn::before,
+.item:not(:global(.js-opened)) .show-btn::after {
+  top: 5px;
+  transform: rotate(-90deg);
+}
+
+.item:not(:global(.js-opened)) .show-btn:hover::before,
+.item:not(:global(.js-opened)) .show-btn:hover::after,
+.item:not(:global(.js-opened)) .show-btn:focus::before,
+.item:not(:global(.js-opened)) .show-btn:focus::after {
+  top: 9px;
+}
+
+/* Remove this if want to have "show less" functionality */
+:global(.js-opened) .show-btn {
+  display: none;
+}
+:global(.func-show-less) :global(.js-opened) .show-btn {
+  display: block;
+}
+
+:global(.js-opened) .show-btn::before,
+:global(.js-opened) .show-btn::after {
+  top: 12px;
+  transform: rotate(90deg);
+}
+
+:global(.js-opened) .show-btn:hover::before,
+:global(.js-opened) .show-btn:hover::after,
+:global(.js-opened) .show-btn:focus::before,
+:global(.js-opened) .show-btn:focus::after {
+  top: 8px;
+}
