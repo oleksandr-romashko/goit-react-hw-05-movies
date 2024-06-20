@@ -5,9 +5,6 @@ import api from "services/api";
 import css from "./Reviews.module.css";
 
 const FUNCTIONALITY_SHOW_LESS = process.env.REACT_APP_FUNC_SHOW_LESS.toLowerCase() === "true";
-console.log('process.env.REACT_APP_FUNC_SHOW_LESS :>> ', process.env.REACT_APP_FUNC_SHOW_LESS);
-console.log('typeof  FUNCTIONALITY_SHOW_LESS:>> ', typeof FUNCTIONALITY_SHOW_LESS);
-console.log('FUNCTIONALITY_SHOW_LESS :>> ', FUNCTIONALITY_SHOW_LESS);
 
 const MESSAGE_NO_REVIEWS = "We have no reviews for this movie.";
 const MESSAGE_NO_MORE_REVIEWS = "We have no more reviews for this movie.";
@@ -78,7 +75,6 @@ const Reviews = () => {
 
     return (
       <>
-        {console.log("rendering reviews")}
         <ul 
           id="reviewsList" 
           className={`${css.list} ${FUNCTIONALITY_SHOW_LESS ? "func-show-less" : ""}`} 
