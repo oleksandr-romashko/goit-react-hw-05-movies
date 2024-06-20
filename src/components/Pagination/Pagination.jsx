@@ -36,6 +36,7 @@ const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
           className={`js-nav-btn ${css["arrow-btn"]}`} 
           data-page={page - 1}
           disabled={page && page === 1 ? "disabled" : ""}
+          type="button"
         >
           <img 
             className={`${css["arrow-img"]} ${css["arrow-img-left"]}`} 
@@ -50,6 +51,7 @@ const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
           className={`js-nav-btn  ${css["arrow-btn"]}`}
           data-page={page + 1}
           disabled={page === total_pages ? "disabled" : ""}
+          type="button"
         >
           <img 
             className={`${css["arrow-img"]} ${css["arrow-img-right"]}`} 
@@ -135,6 +137,7 @@ const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
           }
           data-page={page} 
           disabled={isCurrent || isSeparator ? "disabled" : false}
+          type="button"
         >
           {isSeparator ? SEPARATOR_ITEM_TEXT : page}
         </button>
