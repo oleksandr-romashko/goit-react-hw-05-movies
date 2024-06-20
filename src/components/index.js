@@ -10,3 +10,4 @@ export {default as Cast} from "./Cast/Cast";
 export {default as Reviews} from "./Reviews/Reviews";
 export {default as FallbackUI} from "./FallbackUI/FallbackUI";
 export {default as Message} from "./Message/Message";
+export {default as Pagination} from "./Pagination/Pagination";
