@@ -1,6 +1,7 @@
 .page-footer {
   width: 100%;
   margin-top: 40px;
+  padding-bottom: 16px;
   /* background-color: var(--color-black); */
   /* background-image: linear-gradient(to right, #273758, #243b55); */
   /* background-image: linear-gradient(to right, #426d97, #348794); */
