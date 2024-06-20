@@ -63,12 +63,15 @@ const getMovieCastById = async movieId => {
 };
 
 /**
- * Get the user reviews for a movie.
+ * Get user reviews for a movie.
+ * @param {string|number} movieId Id of the movie. 
+ * @param {number} [page = 1] Number of reviews page. 
+ * @returns {object} Information about reviews, including reviews.
  */
-const getMovieReviewsById = async movieId => {
+const getMovieReviewsById = async (movieId, page = 1) => {
   const response = await axios.get(`movie/${movieId}/reviews`,{
       params: {
-        page: '1',
+        page: page,
       },
     }
   );

@@ -1,5 +1,11 @@
 import { Suspense, useState, useEffect, useRef } from "react";
-import { Link, Outlet, useParams, useLocation, Navigate } from "react-router-dom";
+import { 
+          Link, 
+          Outlet, 
+          useParams, 
+          useLocation, 
+          Navigate 
+        } from "react-router-dom";
 import { AdditionalInfo, Loader, Container, FallbackUI } from "components";
 import api from "services/api";
 import noImage from "images/no-image.jpg";
@@ -14,6 +20,10 @@ const MovieDetailsPage = () => {
   const [error, setError] = useState(null);
   const [shouldNavigateHome, setShouldNavigateHome] = useState(false)
 
+  const [actorCast, setActorCast] = useState(null);
+  const [userReviews, setUserReviews] = useState(null)
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     if (!movieId) {
       return;
@@ -27,14 +37,15 @@ const MovieDetailsPage = () => {
           return;
         }
         setMovieDetails(movie);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch(error => {
         setError(error);
         console.error(error);
+        setIsLoading(false);
       });
   }, [movieId]);
-
+  
   /**
    * Redirects to home page when specific condition met.
    * 
@@ -48,16 +59,26 @@ const MovieDetailsPage = () => {
   }
 
   /**
-   * Prevents cases when back link matches current location and back link does not work.
-   * Occurs when link to the movie was provided and browser back btn used.
+   * Prevents cases when back link matches current location 
+   * and therefore back link does not work.
+   * Occurs when new tab and browser back button being used.
    */
   if (location.pathname === backLink.current.pathname) {
     backLink.current = "/";
   }
 
-  const {title, overview, poster_path, release_date, vote_average, genres} = movieDetails;
+  const {
+          title, 
+          overview, 
+          poster_path, 
+          release_date, 
+          vote_average, 
+          genres
+        } = movieDetails;
   const releaseYear = release_date && new Date(release_date).getFullYear();
-  const posterUrl = poster_path ? `${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}` : noImage;
+  const posterUrl = poster_path 
+    ? `${api.IMAGE_BASE_URL}${api.IMAGE_POSTER_SIZE}${poster_path}` 
+    : noImage;
 
   return (
     <>
@@ -90,7 +111,9 @@ const MovieDetailsPage = () => {
                     </div>
                     <div className={css.description}>
                       <div>
-                        <h1 className={css["movie-title"]}>{title} {releaseYear && `(${releaseYear})`}</h1>
+                        <h1 className={css["movie-title"]}>
+                          {title} {releaseYear && `(${releaseYear})`}
+                        </h1>
                         <p>User Score: {Math.trunc(vote_average * 10)}%</p>
                       </div>
                       <div>
@@ -117,7 +140,14 @@ const MovieDetailsPage = () => {
               <Container>
                 <AdditionalInfo />
                 <Suspense fallback={<Loader />}>
-                  <Outlet />
+                  <Outlet context={
+                      {
+                        cast: [actorCast, setActorCast], 
+                        userReviews: [userReviews, setUserReviews], 
+                        reviewPage: [page, setPage]
+                      }
+                    } 
+                  />
                 </Suspense>
               </Container>
             </section>

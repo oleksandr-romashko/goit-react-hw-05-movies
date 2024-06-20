@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useOutletContext } from "react-router-dom";
 import { Loader, Message } from "components";
 import api from "services/api";
 import noImage from "images/no-image.jpg";
 import css from "./Cast.module.css";
 
+/**
+ * Actors cast component.
+ * Shows actors cards list for the movie.
+ * @returns {React.Component}
+ */
 const Cast = () => {
+  const {cast: [actorCast, setActorCast]} = useOutletContext();
+
   const { movieId } = useParams();
-  const [actorCast, setActorCast] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -15,7 +21,8 @@ const Cast = () => {
       return;
     };
 
-    setIsLoading(true);
+    if(!actorCast) {
+      setIsLoading(true);
     api.getMovieCastById(movieId)
       .then(cast => {
         setActorCast(cast);
@@ -26,7 +33,8 @@ const Cast = () => {
       .finally(() => {
         setIsLoading(false)
       });
-  }, [movieId])
+    }
+  }, [movieId, actorCast, setActorCast])
 
   if (isLoading) {
     return <Loader />;
