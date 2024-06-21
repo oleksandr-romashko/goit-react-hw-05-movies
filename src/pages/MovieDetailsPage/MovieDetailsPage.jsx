@@ -11,6 +11,10 @@ import api from "services/api";
 import noImage from "images/no-image.jpg";
 import css from "./MovieDetailsPage.module.css";
 
+/**
+ * Movie details page component showing movie details.
+ * @returns {JSX.Element} Rendered component with movie details.
+ */
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const location = useLocation();
@@ -32,6 +36,9 @@ const MovieDetailsPage = () => {
     setIsLoading(true);
     api.getMovieDetailsById(movieId)
       .then(movie => {
+        /**
+         * Handles setting of the redirect flag when adult content page occurred
+         */
         if (movie.adult) {
           setShouldNavigateHome(true);
           return;
@@ -47,7 +54,7 @@ const MovieDetailsPage = () => {
   }, [movieId]);
   
   /**
-   * Redirects to home page when specific condition met.
+   * Redirects to home page upon redirect flag set.
    * 
    * This variant instead of inline navigate("/") of useNavigate hook prevents 
    * parent rerender while using sub routes (as it is necessary to include 
@@ -59,9 +66,9 @@ const MovieDetailsPage = () => {
   }
 
   /**
-   * Prevents cases when back link matches current location 
+   * Prevents rare cases when back link matches current location 
    * and therefore back link does not work.
-   * Occurs when new tab and browser back button being used.
+   * Occurs when new tab with browser navigation being used.
    */
   if (location.pathname === backLink.current.pathname) {
     backLink.current = "/";
