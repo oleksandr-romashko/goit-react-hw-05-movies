@@ -2,12 +2,16 @@ import { NavLink } from "react-router-dom";
 import { Container } from "components";
 import css from "./Header.module.css";
 
+/**
+ * Header component containing main navigation and feedback link.
+ * @returns {JSX.Element} Rendered header component.
+ */
 const Header = () => {
   return (
     <header className={`${css["page-header"]} prevent-select`}>
       <Container>
         <p className={css.references}>
-          Any problems or suggestions? Please leave them&nbsp;
+          <span>Any problems or suggestions? Please leave them&nbsp;</span>
           <a 
             className={css["repo-reference"]}
             href="https://github.com/oleksandr-romashko"
