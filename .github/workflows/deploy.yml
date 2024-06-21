@@ -17,20 +17,21 @@ jobs:
           FUNC_SHOW_LESS: ${{ vars.REACT_APP_FUNC_SHOW_LESS }}
           API_KEY: ${{secrets.TMDB_API_KEY}}
         run: |
-          echo "Creating .env file and writing basename to it:"
           echo "REACT_APP_ROUTING_BASENAME=${ROUTING_BASENAME}" > .env
+          echo ".env file was created and with the value of routing basename:"
+          echo "REACT_APP_ROUTING_BASENAME=${ROUTING_BASENAME}"
           echo ""
-          echo "Adding FUNC_SHOW_LESS varuable to .env file:"
-          echo "REACT_APP_FUNC_SHOW_LESS=${FUNC_SHOW_LESS}"
           echo "REACT_APP_FUNC_SHOW_LESS=${FUNC_SHOW_LESS}" >> .env
+          echo "Added FUNC_SHOW_LESS varuable into .env file:"
+          echo "REACT_APP_FUNC_SHOW_LESS=${FUNC_SHOW_LESS}"
           echo ""
           echo "==="
-          echo ".env file content with all set environmental variables:"
+          echo ".env file content with all environmental variables:"
           echo ""
           cat .env
           echo "==="
-          echo "Adding secret api key into .env file"
           echo "REACT_APP_TMDB_API_KEY=${API_KEY}" >> .env
+          echo "Added secret API key into .env file."
           echo ""
           npm install
           npm run lint:js
