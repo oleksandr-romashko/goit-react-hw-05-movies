@@ -1,6 +1,10 @@
 import { Container } from "components";
 import css from "./FallbackUI.module.css";
 
+/**
+ * Default info message in case of error or other fail behavior.
+ * @returns {JSX.Element} Rendered fallback info component.
+ */
 const FallbackUI = () => {
   return (
     <Container>
