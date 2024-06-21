@@ -3,6 +3,10 @@ import { MoviesList, Container, Loader, FallbackUI } from "components";
 import api from "services/api";
 import css from "./HomPage.module.css";
 
+/**
+ * Home page component.
+ * @returns {JSX.Element} Rendered home page component.
+ */
 const HomePage = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
