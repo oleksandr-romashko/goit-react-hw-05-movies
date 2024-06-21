@@ -45,10 +45,22 @@ The live page for this repository can be viewed at [GitHub Pages](https://oleksa
 
   1. Make sure you have an LTS version of Node.js installed on your computer. [Download and install](https://nodejs.org/en/) if needed.
   1. Install the project's base dependencies with the `npm install` command.
-  1. Add [TMDB API key](themoviedb.org) to `REACT_APP_TMDB_API_KEY` variable in `.env` file OR (better) [add API key as a secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) to your GitHub repository.
-  1. (Optional for correctness of deployed app) Fix `homepage` value in `package.json` (should match your repo GitHub URL) and `REACT_APP_ROUTING_BASENAME` in `.env.production` (location within your application, when your application is served from a sub-directory on the server) when deploying to GitHub to match your case.
-  1. Start development mode by running the `npm start` command.
+  1. Create `.env.local` file in the project root and add following environment variables (follows provided [.env.example](./.env.example) file as a helping guide): 
+     1. (required) Add [TMDB API key](themoviedb.org) to `REACT_APP_TMDB_API_KEY` variable
+     1. (optional) Change `REACT_APP_ROUTING_BASENAME` variable (location within your application, when your application is served from a sub-directory on the server) when deploying to GitHub to match your case.
+     1. (optional) Change `REACT_APP_FUNC_SHOW_LESS` variable. Change is to `true` for "show more / show less" folding functionality for unlimited folds/unfoldes or to `false` for "show more" functionality only when all respective elements may be unfolded once and after that button disappear.
+  1. Start web server by running the `npm start` command.
   1. Go to [localhost:3000](http://localhost:3000/) (port may vary) in your browser. This page will automatically reload after saving changes to the project files.
+
+## Valuable information for the successful deploy
+
+  1. In repository settings: GitHub Actions should have Read and write permissions as well as checked Allow GitHub Actions to create and approve pull requests in Workflow permissions. Pages should deployed from `gh-pages` branch.
+  1. All deploy rules are described in [deploy.yml](.github/workflows/deploy.yml) file.
+  1. For correct operation of deployed app change `homepage` value in [package.json](./package.json) (should match your repo GitHub URL, e.g. `https://<profile-name>.github.io/<repository-name>/`)
+  1. All environmental variables and secrets should be set inside your repository **Settings** > **Secrets and variables** > **Actions** section:
+     1. `REACT_APP_TMDB_API_KEY` should be set as a [repository secret](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) and should match obtained [TMDB API key](themoviedb.org) API key.
+     1. `REACT_APP_ROUTING_BASENAME` should be set as a [repository variable](https://docs.github.com/en/actions/learn-github-actions/variables) and match your repository name (as your application will be served from a sub-directory on the server that matches your repository name) or other depending on your deploy conditions.
+     1. `REACT_APP_FUNC_SHOW_LESS` should be set as [repository variable](https://docs.github.com/en/actions/learn-github-actions/variables). Change is to `true` for "show more / show less" folding functionality for unlimited folds/unfoldes or to `false` for "show more" functionality only when all respective elements may be unfolded once and after that button disappear.
 
 ## Task Acceptance Criteria
 
