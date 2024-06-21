@@ -59,6 +59,7 @@ const getMoviesByTitle = async keyword => {
 
 /**
  * Gets full movie information details.
+ * https://developer.themoviedb.org/reference/movie-details
  * @param {string|number} movieId Id of the movie.
  * @returns {object} Movie information details.
  */
@@ -69,6 +70,7 @@ const getMovieDetailsById = async movieId => {
 
 /**
  * Gets actor cast information for the specific movie.
+ * https://developer.themoviedb.org/reference/movie-credits
  * @param {string|number} movieId Id of the movie.
  * @returns {object[]} Array of actor cast information.
  */
@@ -79,6 +81,7 @@ const getMovieCastById = async movieId => {
 
 /**
  * Gets user reviews for the specific movie.
+ * https://developer.themoviedb.org/reference/movie-reviews
  * @param {string|number} movieId Id of the movie. 
  * @param {number} [page = 1] Number of reviews page. 
  * @returns {object} Information about movie reviews, including reviews itself.
