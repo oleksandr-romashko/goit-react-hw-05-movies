@@ -3,11 +3,11 @@ import css from "./Message.module.css";
 import React from "react";
 
 /**
- * Creates informational message.
+ * Informational message wrapper component.
  * @param {string} props.text Informational text to display.
  * @param {string} [props.textAlign="center"] Optional text alignment. By default is center.
  * @param {string} props.marginTop Top margin value.
- * @returns {React.Component} Informational message component.
+ * @returns {JSX.Element} Rendered informational message component.
  */
 const Message = ({text, textAlign="center", marginTop}) => {
   return (
