@@ -6,11 +6,11 @@ import noImage from "images/no-image.jpg";
 import css from "./Cast.module.css";
 
 /**
- * Actors cast component.
- * Shows actors cards list for the movie.
+ * Cast component with the list of actor cards related to the movie.
  * @returns {React.Component}
  */
 const Cast = () => {
+  // uses external state for one time load on mount
   const {cast: [actorCast, setActorCast]} = useOutletContext();
 
   const { movieId } = useParams();
@@ -41,8 +41,14 @@ const Cast = () => {
   }
 
   if (actorCast) {
+    // absent actors cast message
     if (actorCast.length === 0) {
-      return <Message text="We don't have any information about actors cast for this movie." textAlign="left" />
+      return (
+        <Message 
+          text="We don't have any information about actors cast for this movie." 
+          textAlign="left" 
+        />
+      )
     }
 
     return (
@@ -51,7 +57,11 @@ const Cast = () => {
           <li key={id} className={css["cast-item"]}>
             <img 
               className={css["actor-image"]} 
-              src={profile_path ? `${api.IMAGE_BASE_URL}${api.IMAGE_PROFILE_SIZE}${profile_path}` : noImage} 
+              src={
+                profile_path 
+                ? `${api.IMAGE_BASE_URL}${api.IMAGE_PROFILE_SIZE}${profile_path}` 
+                : noImage
+              } 
               alt="" 
               aria-label={`${name} portrait`} 
             />
