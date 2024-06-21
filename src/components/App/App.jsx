@@ -11,12 +11,11 @@ const Reviews = lazy(() => import("components/Reviews/Reviews"));
 
 /**
  * Movie Search application component.
- * @returns {React.Component}
+ * Contains routing with main components.
+ * @returns {JSX.Element} Rendered application component.
  */
 const App = () => {
-  /**
-   * Loads critically necessary images to cache them for further use.
-   */
+  // Loads critically necessary images upon mount to cache them for further use.
   useEffect(()=> {
     loadCriticalImages();
   }, []);
