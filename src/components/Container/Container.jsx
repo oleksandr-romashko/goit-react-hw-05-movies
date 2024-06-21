@@ -3,8 +3,8 @@ import css from "./Container.module.css";
 
 /**
  * Simple adaptive container wrapper. 
- * @param {*} props.children Any children components. 
- * @returns 
+ * @param {React.Component | JSX.node} props.children Any children components. 
+ * @returns {JSX.Element} Rendered container wrapper component.
  */
 const Container = ({children}) => {
   return (
