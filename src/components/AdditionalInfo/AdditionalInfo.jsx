@@ -11,8 +11,12 @@ const AdditionalInfo = () => {
     <div className={css["additional-info"]}>
       <p>Additional info</p>
       <div className={css.options}>
-        <NavLink className={css.option} to="cast" state={{ from: location }}>Cast</NavLink>
-        <NavLink className={css.option} to="reviews" state={{ from: location }}>Reviews</NavLink>
+        <NavLink className={css.option} to="cast" state={{ from: location }}>
+          Cast
+        </NavLink>
+        <NavLink className={css.option} to="reviews" state={{ from: location }}>
+          Reviews
+        </NavLink>
       </div>
     </div>
   )
