@@ -1,14 +1,15 @@
-# Movie Search
+<h1 align="left">Movie Search</h1>
+
 
 <p align="center">
   <img src="./assets/application-example.png" width="600" title="Application interface" alt="application interface preview">
 </p>
 
-## goit-react-hw-05-movies
+<h2 align="center">An application to find information about your favorite movies.</h2>
 
-Basic routing for a movie search and storage application using external API.
+Application uses external [TMDB API](themoviedb.org).
 
-To see a preview of a working application example, use [this link](https://drive.google.com/file/d/1vR0hi3n1236Q5Bg4-se-8JVKD9UKSfId/view?usp=sharing). This implementation was based on that example.
+To see a preview of the initial idea, use [this link](https://drive.google.com/file/d/1vR0hi3n1236Q5Bg4-se-8JVKD9UKSfId/view?usp=sharing). This implementation was based on that example.
 
 ## themoviedb.org API
 
