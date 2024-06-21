@@ -14,48 +14,63 @@ const IMAGE_PROFILE_SIZE = "h632";
 
 
 /**
- * Default common parameters for all API requests.
+ * Common (default) parameters for all requests.
  */
 axios.defaults.baseURL = "https://api.themoviedb.org/3/";
 axios.defaults.params = {
-  language: "en-US", 
-  api_key: API_KEY
+  api_key: API_KEY,
+  include_adult: false,
+  language: "en-US" 
 };
 
 /**
  * Get a list of the most popular movies for today.
+ * Obtains results for the first page only.
+ * https://developer.themoviedb.org/reference/trending-all
+ * @returns {object[]} Array of movie objects.
  */
 const getTrendingMovies = async () => {
-  const response = await axios.get(`trending/movie/day`);
+  const response = await axios.get("trending/movie/day",
+    {
+      params: {
+        page:1,
+      }
+    }
+  );
   return response.data.results;
 };
 
 /**
  * Searches for a movies by their title.
+ * Obtains results for the first page only.
+ * https://developer.themoviedb.org/reference/search-movie
+ * @param {string} keyword Search query keyword.
+ * @returns {object[]} Array of movie objects.
  */
 const getMoviesByTitle = async keyword => {
   const response = await axios.get("search/movie", {
     params: {
       query: keyword,
       page:1,
-      include_adult: false,
     }
   });
   return response.data.results;
 };
 
 /**
- * Get full movie information.
+ * Gets full movie information details.
+ * @param {string|number} movieId Id of the movie.
+ * @returns {object} Movie information details.
  */
 const getMovieDetailsById = async movieId => {
-  const response = await axios.get(
-    `movie/${movieId}`
-  );
+  const response = await axios.get(`movie/${movieId}`);
   return response.data;
 };
 
 /**
- * Get cast information for a movie.
+ * Gets actor cast information for the specific movie.
+ * @param {string|number} movieId Id of the movie.
+ * @returns {object[]} Array of actor cast information.
  */
 const getMovieCastById = async movieId => {
   const response = await axios.get(`movie/${movieId}/credits`);
@@ -63,10 +78,10 @@ const getMovieCastById = async movieId => {
 };
 
 /**
- * Get user reviews for a movie.
+ * Gets user reviews for the specific movie.
  * @param {string|number} movieId Id of the movie. 
  * @param {number} [page = 1] Number of reviews page. 
- * @returns {object} Information about reviews, including reviews.
+ * @returns {object} Information about movie reviews, including reviews itself.
  */
 const getMovieReviewsById = async (movieId, page = 1) => {
   const response = await axios.get(`movie/${movieId}/reviews`,{
