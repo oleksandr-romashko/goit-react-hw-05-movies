@@ -9,9 +9,13 @@ const MovieDetailsPage = lazy(() => import("pages/MovieDetailsPage/MovieDetailsP
 const Cast = lazy(() => import("components/Cast/Cast"));
 const Reviews = lazy(() => import("components/Reviews/Reviews"));
 
+/**
+ * Movie Search application component.
+ * @returns {React.Component}
+ */
 const App = () => {
   /**
-   * Loads critically necessary images to cache them.
+   * Loads critically necessary images to cache them for further use.
    */
   useEffect(()=> {
     loadCriticalImages();
