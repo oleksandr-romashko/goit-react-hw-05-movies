@@ -1,5 +1,9 @@
 import css from "./Loader.module.css";
 
+/**
+ * Animated loader component.
+ * @returns {JSX.Element} Rendered loader component.
+ */
 const Loader = () => {
   return (
     <div className={css.loader}>
@@ -8,6 +12,11 @@ const Loader = () => {
   )
 };
 
+/**
+ * Svg icon component
+ * @param {*} props Any props for svg element.
+ * @returns {JSX.Element} Rendered svg icon component.
+ */
 const SpoolIconSvg = (props) => (
   <svg 
   viewBox="0 0 65 47"
