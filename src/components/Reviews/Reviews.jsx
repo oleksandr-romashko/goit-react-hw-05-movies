@@ -10,11 +10,12 @@ const MESSAGE_NO_REVIEWS = "We have no reviews for this movie.";
 const MESSAGE_NO_MORE_REVIEWS = "We have no more reviews for this movie.";
 
 /**
- * User review component.
- * Shows user reviews related to the specific movie. 
- * @returns {React.Component}
+ * User reviews component.
+ * Shows the list of user reviews related to the specific movie. 
+ * @returns {JSX.Element} Rendered reviews component.
  */
 const Reviews = () => {
+  // uses external state
   const {userReviews: [userReviews, setUserReviews]} = useOutletContext()
   const {reviewPage: [page, setPage]} = useOutletContext();
 
@@ -29,8 +30,8 @@ const Reviews = () => {
     setIsLoading(true);
     api.getMovieReviewsById(movieId, page)
       .then(reviews => {
-        // initially checks for user reviews
-        // then checks if there are reviews update
+        // initially requests user reviews
+        // then each time checks if there are any reviews update
         if (
           !userReviews ||
           reviews.total_results !== userReviews.total_results ||
@@ -58,11 +59,15 @@ const Reviews = () => {
       return <Message text={MESSAGE_NO_REVIEWS} textAlign="left" />
     }
 
+    /**
+     * Assign class to the element upon review unfold.
+     * Supports both "only show more" and "show more / show less" function.
+     * @param {React.SyntheticEvent} event Occurred event. 
+     */
     const handleReviewClick = (event) => {
       if (event.target.nodeName === "BUTTON") {
         const btnEl = event.target;
         const itemEl = btnEl.closest(`.${css.item}`);
-
         if (itemEl.classList.contains('js-opened')) {
           btnEl.textContent = "Show more";
           itemEl.classList.remove('js-opened');
@@ -77,7 +82,8 @@ const Reviews = () => {
       <>
         <ul
           className={`${css.list} ${FUNCTIONALITY_SHOW_LESS ? "func-show-less" : ""}`} 
-          onClick={handleReviewClick}>
+          onClick={handleReviewClick}
+        >
           {userReviews.results.map(({id, author, content, created_at}) => (
             <li key={id} className={`${css.item} truncate`}>
               <div className={css["review-details"]}>
@@ -99,10 +105,10 @@ const Reviews = () => {
         </ul>
         {userReviews.total_pages > 1 
           ? <Pagination 
-          page={page} 
-          total_pages={userReviews.total_pages} 
-          onPageChange={setPage} 
-          /> 
+              page={page} 
+              total_pages={userReviews.total_pages} 
+              onPageChange={setPage} 
+            /> 
           : <Message text={MESSAGE_NO_MORE_REVIEWS} marginTop="24px" />
         }
       </>

@@ -109,7 +109,6 @@
   top: 9px;
 }
 
-/* Remove this if want to have "show less" functionality */
 :global(.js-opened) .show-btn {
   display: none;
 }
