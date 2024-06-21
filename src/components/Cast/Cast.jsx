@@ -7,7 +7,7 @@ import css from "./Cast.module.css";
 
 /**
  * Cast component with the list of actor cards related to the movie.
- * @returns {React.Component}
+ * @returns {JSX.Element} Rendered actor cast component.
  */
 const Cast = () => {
   // uses external state for one time load on mount
