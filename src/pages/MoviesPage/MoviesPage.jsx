@@ -4,6 +4,10 @@ import { MoviesList, SearchForm, Container, Loader, FallbackUI } from "component
 import api from "services/api";
 import css from "./MoviesPage.module.css";
 
+/**
+ * Movies page component showing search form and movies search results.
+ * @returns {JSX.Element} Rendered movies page component.
+ */
 const MoviesPage = () => {
   const [searchParams] = useSearchParams();
   const [foundMovies, setFoundMovies] = useState(null);
