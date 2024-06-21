@@ -1,6 +1,10 @@
 import { NavLink, useLocation } from "react-router-dom";
 import css from "./AdditionalInfo.module.css";
 
+/**
+ * Component containing controls for obtaining additional movie information.
+ * @returns {React.Component}
+ */
 const AdditionalInfo = () => {
   const location = useLocation();
   return (
