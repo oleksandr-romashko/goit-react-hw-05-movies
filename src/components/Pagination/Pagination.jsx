@@ -10,15 +10,17 @@ const SEPARATOR_ITEM_TEXT = "...";
  * @param {number} [props.page=1] Current page.
  * @param {number} [props.total_pages=1] Total number of pages.
  * @param {callback} props.onPageChange Callback that handles page change.
- * @returns {React.Component} Pagination component.
+ * @returns {JSX.Element} Rendered pagination component.
  */
 const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
+  // check for out-of-bounds and fault values
   if (page < 1 || page > total_pages) {
     console.error(`Error: Provided current pagination page '${page}' ` 
       + `is out of pagination bounds from '1' to '${total_pages}'.`);
     return;
   }
 
+  // handles any not disabled pagination button element click
   const handleClick = (event) => {
     const btnEl = event.target.closest(".js-nav-btn");
     if (btnEl) {
@@ -64,7 +66,7 @@ const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
   );
 
   /**
-   * Creates the list of page items.
+   * Creates the list of numbered pagination page items.
    * The order of adding elements matters.
    * The list will have from 1 up to 7 items.
    * If there are pages between 
@@ -74,9 +76,8 @@ const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
    *  so in the end there may be maximum 7 items 
    *  (all names except separators related to page numbers):
    *  <first> <separator> <current-1> <current> <current+1> <separator> <last>
-   *  example (diamond brackets wraps item element):
-   *  <1> <...> <4> <5> <6> <...> <10>
-   * @returns {JSX} JSX markdown.
+   * @example (diamond brackets shows item element): <1> <...> <4> <5> <6> <...> <10>
+   * @returns {JSX.Element[]} Array of pagination pages number items.
    */
   function createPaginationList() {
     const pagesArr = [];
@@ -120,9 +121,11 @@ const Pagination = ({page = 1, total_pages = 1, onPageChange}) => {
   }
 
   /**
-   * Creates pagination item.
+   * Creates single numbered pagination page item.
    * @param {number | string} props.page Page number or separator description.
-   * @returns {React.Component} List item JSX markdown.
+   * @param {boolean} props.isCurrent Flag showing if item refers to current location.
+   * @param {boolean} props.isSeparator Flag showing if item is a separator.
+   * @returns {JSX.Element} Single pagination page number elements.
    */
   function createPaginationListItem({
     page, 
